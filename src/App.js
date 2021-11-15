@@ -23,6 +23,25 @@ function App() {
     setToDoList(filtered);
   }
 
+  const handleChange = (e) => {
+    setUserInput(e.currentTarget.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // prevent reload and go bakc to inital render
+    addTask(userInput);
+    setUserInput("");
+  }
+
+  const addTask = (userInput) => {
+    let copy = [...todoList];
+    copy = [...copy, {id: toDoList.length + 1, task: userInput, complete: false }];
+    setToDoList(copy);
+  }
+
+
+
 
   return (
     <div className="App">
