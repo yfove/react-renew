@@ -1,22 +1,23 @@
-// for the form to work we have to keep track of the changes
-// so we logically have to handle what happens as the input changes
+import React, { useState } from 'react';
 
-// Form Logic
-// Local State ( so we will need to emply that useState() )
-// form component with with an input value assigned to correct variable
-// function that handles the state's changes
-// function that handles form submission
+const ToDoForm = ({ addTask }) => {
 
-import React, {useState} from 'react';
+    const [ userInput, setUserInput ] = useState('');
 
-const [userInput, setUserInput] = useState('');
+    const handleChange = (e) => {
+        setUserInput(e.currentTarget.value)
+    }
 
-const ToDoForm = () => 
-{
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addTask(userInput);
+        setUserInput("");
+    }
     return (
-        <div>
+        <form onSubmit={handleSubmit}>
             <input value={userInput} type="text" onChange={handleChange} placeholder="Enter task..."/>
-        </div>
+            <button>Submit</button>
+        </form>
     );
 };
 
